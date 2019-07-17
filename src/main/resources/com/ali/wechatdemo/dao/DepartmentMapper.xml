@@ -85,5 +85,9 @@
     where pid = #{departmentId,jdbcType=INTEGER}
   </select>
 
+    <select id="selectByDepartmentName" resultType="java.lang.Integer">
+        select `department_id` from `department` where `department_name` = #{departmentName};
+    </select>
+
 
 </mapper>

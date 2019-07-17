@@ -20,4 +20,6 @@ public interface StudentService {
     void batchdelete(List<Integer> studentIds);
 
     List<Student> selectAll();
+
+
 }

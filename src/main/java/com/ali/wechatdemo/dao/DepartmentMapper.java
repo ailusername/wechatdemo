@@ -21,4 +21,6 @@ public interface DepartmentMapper {
 
     List<DepartmentList> getParentTree(@Param("departmentId") Integer departmentId);
 
+    Integer selectByDepartmentName(@Param("departmentName") String departmentName);
+
 }
