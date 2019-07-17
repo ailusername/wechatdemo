@@ -4,5 +4,5 @@ import com.ali.wechatdemo.dto.RecordDto;
 
 public interface RecordService {
 
-    RecordDto selectRecordList(String oppenid);
+    RecordDto selectRecordList(String openid);
 }

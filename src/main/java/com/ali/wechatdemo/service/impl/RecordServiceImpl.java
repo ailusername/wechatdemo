@@ -23,10 +23,10 @@ public class RecordServiceImpl implements RecordService {
     @Autowired
     private DepartmentMapper departmentMapper;
     @Override
-    public RecordDto selectRecordList(String oppenid) {
+    public RecordDto selectRecordList(String openid) {
 
         RecordDto recordDto = new RecordDto();
-        Student student = studentMapper.selectOppenid(oppenid);
+        Student student = studentMapper.selectOpenid(openid);
         if (student != null){
             Department department = departmentMapper.selectByPrimaryKey(student.getDepartmentId());
             List<String> departmentIdList  = studentMapper.selectDepartmentIdList(student.getDepartmentId());
