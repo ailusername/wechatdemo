@@ -103,4 +103,32 @@
       openid = #{openid,jdbcType=VARCHAR}
     where student_id = #{studentId,jdbcType=VARCHAR}
   </update>
+
+  <!--custom-->
+  <!--search-->
+  <select id="search" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from student
+    <where>
+      <if test="name != null">
+        student_name = #{name}
+      </if>
+      <if test="departmentId != null">
+        and department_id = #{departmentId}
+      </if>
+    </where>
+  </select>
+
+  <!--批量删除-->
+  <delete id="batchdelete" parameterType="java.lang.Integer">
+    delete from student
+    <where>
+      student_id in
+      <foreach collection="studentIds" item="studentId"
+               open="(" separator="," close=")">
+        #{studentId,jdbcType=VARCHAR}
+      </foreach>
+    </where>
+  </delete>
 </mapper>
