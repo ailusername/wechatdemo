@@ -1,6 +1,9 @@
 package com.ali.wechatdemo.dao;
 
 import com.ali.wechatdemo.po.Record;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface RecordMapper {
     int deleteByPrimaryKey(Integer recordId);
@@ -14,4 +17,7 @@ public interface RecordMapper {
     int updateByPrimaryKeySelective(Record record);
 
     int updateByPrimaryKey(Record record);
+
+    List<Record> selectByStudent(@Param("stuids") String stuids);
+
 }

@@ -34,7 +34,6 @@ public class TracherServiceImpl implements TracherService {
         if (yzcode != null && yzcode.equals(code)){
 
         }
-
         return false;
     }
 }

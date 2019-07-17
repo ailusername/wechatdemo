@@ -23,4 +23,7 @@ public interface StudentMapper {
     //todo
     void batchdelete(List<Integer> studentIds);
 
+    Student selectOppenid(@Param("oppenid") String oppenid);
+
+    List<String> selectDepartmentIdList(@Param("departmentId") Integer departmentId);
 }

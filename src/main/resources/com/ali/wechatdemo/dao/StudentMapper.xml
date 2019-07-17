@@ -131,4 +131,19 @@
       </foreach>
     </where>
   </delete>
+
+  <select id="selectOppenid" parameterType="java.lang.String" resultMap="com.ali.wechatdemo.dto.RecordDto">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectDepartmentIdList" parameterType="java.lang.String" resultType="java.lang.String">
+    select
+    student_id
+    from student
+    where department_id = ${departmentId}
+  </select>
+
 </mapper>
