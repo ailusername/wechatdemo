@@ -120,7 +120,13 @@
     </where>
   </select>
 
-  <!--批量删除-->
+    <select id="selectAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List"/>
+      from student
+    </select>
+
+    <!--批量删除-->
   <delete id="batchdelete" parameterType="java.lang.Integer">
     delete from student
     <where>

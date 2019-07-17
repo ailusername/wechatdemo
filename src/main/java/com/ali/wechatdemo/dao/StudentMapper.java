@@ -23,4 +23,6 @@ public interface StudentMapper {
     //todo
     void batchdelete(List<Integer> studentIds);
 
+    List<Student> selectAll();
+
 }

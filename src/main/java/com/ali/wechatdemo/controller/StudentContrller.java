@@ -52,4 +52,10 @@ public class StudentContrller {
     }
 
 
+    @GetMapping("/selectAll")
+    public List<Student> selectAll(){
+        return studentService.selectAll();
+    }
+
+
 }
