@@ -138,7 +138,7 @@
     </where>
   </delete>
 
-  <select id="selectOppenid" parameterType="java.lang.String" resultMap="com.ali.wechatdemo.dto.RecordDto">
+  <select id="selectOpenid" parameterType="java.lang.String" resultType="com.ali.wechatdemo.po.Student">
     select
     <include refid="Base_Column_List" />
     from student
@@ -150,6 +150,12 @@
     student_id
     from student
     where department_id = ${departmentId}
+  </select>
+  <select id="selectByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where openid = #{openid,jdbcType=VARCHAR}
   </select>
 
 </mapper>

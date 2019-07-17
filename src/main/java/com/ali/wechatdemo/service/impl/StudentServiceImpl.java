@@ -49,4 +49,9 @@ public class StudentServiceImpl implements StudentService{
     public List<Student> selectAll() {
         return studentMapper.selectAll();
     }
+
+    @Override
+    public Student selectByOpenid(String openid) {
+        return studentMapper.selectByOpenid(openid);
+    }
 }

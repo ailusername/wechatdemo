@@ -23,10 +23,11 @@ public interface StudentMapper {
     //todo
     void batchdelete(List<Integer> studentIds);
 
-    Student selectOppenid(@Param("oppenid") String oppenid);
+    Student selectOpenid(@Param("openid") String openid);
 
     List<String> selectDepartmentIdList(@Param("departmentId") Integer departmentId);
 
     List<Student> selectAll();
 
+    Student selectByOpenid(String openid);
 }

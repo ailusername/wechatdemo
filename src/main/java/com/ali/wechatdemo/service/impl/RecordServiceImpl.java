@@ -26,7 +26,7 @@ public class RecordServiceImpl implements RecordService {
     public RecordDto selectRecordList(String oppenid) {
 
         RecordDto recordDto = new RecordDto();
-        Student student = studentMapper.selectOppenid(oppenid);
+        Student student = studentMapper.selectOpenid(oppenid);
         if (student != null){
             Department department = departmentMapper.selectByPrimaryKey(student.getDepartmentId());
             List<String> departmentIdList  = studentMapper.selectDepartmentIdList(student.getDepartmentId());
