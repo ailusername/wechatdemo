@@ -26,4 +26,7 @@ public interface StudentMapper {
     Student selectOppenid(@Param("oppenid") String oppenid);
 
     List<String> selectDepartmentIdList(@Param("departmentId") Integer departmentId);
+
+    List<Student> selectAll();
+
 }

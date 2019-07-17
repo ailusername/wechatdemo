@@ -19,5 +19,5 @@ public interface StudentService {
     //todo
     void batchdelete(List<Integer> studentIds);
 
-
+    List<Student> selectAll();
 }

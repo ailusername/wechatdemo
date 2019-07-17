@@ -44,4 +44,9 @@ public class StudentServiceImpl implements StudentService{
     public void batchdelete(List<Integer> studentIds) {
         studentMapper.batchdelete(studentIds);
     }
+
+    @Override
+    public List<Student> selectAll() {
+        return studentMapper.selectAll();
+    }
 }
