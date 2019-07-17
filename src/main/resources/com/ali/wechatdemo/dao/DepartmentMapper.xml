@@ -68,4 +68,22 @@
       pid = #{pid,jdbcType=INTEGER}
     where department_id = #{departmentId,jdbcType=INTEGER}
   </update>
+
+  <!--sql-->
+
+  <resultMap id="DepartmentList" type="com.ali.wechatdemo.dto.DepartmentList">
+    <id column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <!--<result column="pid" jdbcType="INTEGER" property="pid" />-->
+    <collection property="subDeps" javaType="ArrayList" column="departmentId"
+                ofType="com.ali.wechatdemo.dto.DepartmentList" select="getParentTree"/>
+  </resultMap>
+  <select id="getParentTree" parameterType="java.lang.Integer" resultMap="DepartmentList">
+    select
+    <include refid="Base_Column_List" />
+    from department
+    where pid = #{departmentId,jdbcType=INTEGER}
+  </select>
+
+
 </mapper>
