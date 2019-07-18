@@ -1,7 +1,7 @@
 package com.ali.wechatdemo.enumeration;
 
 public enum Gender {
-    Unknown,
-    Male,
-    Female
+    未知,
+    男,
+    女
 }

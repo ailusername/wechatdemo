@@ -21,5 +21,5 @@ public interface StudentService {
 
     List<Student> selectAll();
 
-    Student selectByOpenid(String openid);
+
 }
