@@ -4,6 +4,7 @@ import com.ali.wechatdemo.dao.CompanyMapper;
 import com.ali.wechatdemo.dao.DepartmentMapper;
 import com.ali.wechatdemo.dao.RecordMapper;
 import com.ali.wechatdemo.dto.DepartmentList;
+import com.ali.wechatdemo.po.Company;
 import com.ali.wechatdemo.po.Department;
 import com.ali.wechatdemo.po.Record;
 import com.ali.wechatdemo.po.Student;
@@ -26,7 +27,6 @@ import java.util.List;
 @CrossOrigin
 @EnableAutoConfiguration
 @RequestMapping("/upload")
-@A
 public class UpLoadController {
 
     @Autowired
@@ -39,13 +39,14 @@ public class UpLoadController {
     private RecordMapper recordMapper;
 
     @PostMapping("/audioupload")
-    public String upload(MultipartFile uploadFile, HttpServletRequest request, String openid,Integer company_id) throws IOException {
+    public String upload(MultipartFile uploadFile, HttpServletRequest request, String openid,Integer company_id,Byte status) throws IOException {
 
         Student students = studentService.selectByOpenid(openid);
         String studentId = students.getStudentId();
         String studentName = students.getStudentName();
         Integer departmentId = students.getDepartmentId();
         List<DepartmentList> parentTree = departmentMapper.getParentTree(departmentId);
+        Company companyName = companyMapper.selectByPrimaryKey(company_id);
 
         if (openid != null){
             String realPath = request.getSession().getServletContext().getRealPath("/uploadFile/");
@@ -56,6 +57,10 @@ public class UpLoadController {
             }
             //        try {
             String filename = uploadFile.getOriginalFilename();
+            //获取到后缀名
+            String suffixName = filename.substring(filename.lastIndexOf("."));
+            //班级+姓名+公司
+            //String finalName =parentTree + studentName + companyName +suffixName;
             //服务端保存的文件对象
             File fileServer = new File(dir, filename);
             System.out.println("file文件真实路径:" + fileServer.getAbsolutePath());
@@ -64,18 +69,18 @@ public class UpLoadController {
             String filePath = request.getScheme() + "://" +
                     request.getServerName() + ":"
                     + request.getServerPort()
-                    + "/uploadFile/" + filename;
+                    + "/audioupload/" + filename;
             //添加到record表中
             Record record = new Record();
-            record.setRecordName("uploadFile");
+            record.setRecordName(filename);
             record.setCompanyId(company_id);
             record.setStudentId(studentId);
-            record.setRecordUrl("fileServer");
+            record.setRecordUrl(filePath);
+            record.setStatus((byte)status);
             recordMapper.insert(record);
             //3，返回可供访问的网络路径
             return filePath;
         }
-
         //        } catch (IOException e) {
         //            throw new Exception("异常");
         //        }
