@@ -1,3 +1,4 @@
+/*
 package com.ali.wechatdemo.controller;
 import com.ali.wechatdemo.constant.ErrConstant;
 import com.ali.wechatdemo.dao.CompanyMapper;
@@ -88,3 +89,4 @@ public class UpLoadController {
 
     }
 }
+*/

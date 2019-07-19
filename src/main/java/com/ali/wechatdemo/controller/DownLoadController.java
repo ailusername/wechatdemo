@@ -1,3 +1,4 @@
+/*
 package com.ali.wechatdemo.controller;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -51,3 +52,4 @@ public class DownLoadController {
         return  null;
     }
 }
+*/
