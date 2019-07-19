@@ -2,6 +2,8 @@ package com.ali.wechatdemo.dao;
 
 import com.ali.wechatdemo.po.Teacher;
 
+import java.util.List;
+
 public interface TeacherMapper {
     int deleteByPrimaryKey(String teacherId);
 
@@ -14,4 +16,6 @@ public interface TeacherMapper {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+
+    List<Teacher> selectAll();
 }
