@@ -1,15 +1,18 @@
 package com.ali.wechatdemo.service.impl;
 
 import com.ali.wechatdemo.dao.TeacherMapper;
-import com.ali.wechatdemo.service.TracherService;
+import com.ali.wechatdemo.po.Teacher;
+import com.ali.wechatdemo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @EnableAutoConfiguration
-public class TracherServiceImpl implements TracherService {
+public class TracherServiceImpl implements TeacherService {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -35,5 +38,15 @@ public class TracherServiceImpl implements TracherService {
 
         }
         return false;
+    }
+
+    @Override
+    public List<Teacher> selectAll() {
+        return teacherMapper.selectAll();
+    }
+
+    @Override
+    public int insert(Teacher record) {
+        return teacherMapper.insert(record);
     }
 }
