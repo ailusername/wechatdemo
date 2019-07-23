@@ -55,4 +55,8 @@
     set company_name = #{companyName,jdbcType=VARCHAR}
     where company_id = #{companyId,jdbcType=INTEGER}
   </update>
+  <insert id="save" parameterType="com.ali.wechatdemo.po.Company">
+    insert into company (company_name)
+    values (#{companyName,jdbcType=VARCHAR})
+  </insert>
 </mapper>

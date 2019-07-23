@@ -1,5 +1,6 @@
 package com.ali.wechatdemo.dao;
 
+import com.ali.wechatdemo.dto.UpLoadDTO;
 import com.ali.wechatdemo.po.Record;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +20,9 @@ public interface RecordMapper {
     int updateByPrimaryKey(Record record);
 
     List<Record> selectByStudent(@Param("stuids") String stuids);
+
+    void getInsertByRecord(@Param("path") String path, @Param("companyName")String companyName, @Param("studentName")String studentName);
+
+
 
 }

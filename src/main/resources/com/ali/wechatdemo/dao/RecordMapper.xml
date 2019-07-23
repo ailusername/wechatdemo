@@ -150,4 +150,7 @@
       status = #{status,jdbcType=TINYINT}
     where record_id = #{recordId,jdbcType=INTEGER}
   </update>
+<!--  sql-->
+
+
 </mapper>

@@ -12,12 +12,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ali.wechatdemo.FastDFS.FastDFSClient;
+import com.ali.wechatdemo.dao.CompanyMapper;
+import com.ali.wechatdemo.dto.UpLoadDTO;
+import com.ali.wechatdemo.po.Company;
+import com.ali.wechatdemo.po.Record;
 import com.ali.wechatdemo.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -25,11 +26,12 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/file")
-public class FileController
-{
+public class FileController {
 
     @Autowired
     private FastDFSClient fastDFSClient;
+    @Autowired
+    private CompanyMapper companyMapper;
 
     /**
      * 上传文件
@@ -38,9 +40,7 @@ public class FileController
      */
 
     @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
-    public Map<String, Object> uploadFile(@RequestParam MultipartFile filedata)
-    {
-
+    public Map<String, Object> uploadFile(@RequestParam MultipartFile filedata) {
         Map<String, Object> m = new HashMap<String, Object>();
 
         if (filedata != null && !filedata.isEmpty())
@@ -73,30 +73,21 @@ public class FileController
      * 下载文件
      * @param response  响应
      * @param path      下载路径
-     * @param sname
-     * @param cname
-     * @param recordingTime
-     * @param dname
-     * @param isAdopt
+     * @param StudentName
+     * @param departmentId
+     * @param companyName
      */
     @RequestMapping(value = "getFileByPath", method = RequestMethod.GET)
     public void getFileByPath(HttpServletResponse response, @RequestParam("path") String path,
-                              @RequestParam("sname") String sname,
-                              @RequestParam("cname") String cname,
-                              @RequestParam("recordingTime") String recordingTime,
-                              @RequestParam("dname") String dname,
-                              @RequestParam("isAdopt") Integer isAdopt) {
-        String adopt;
-        if(isAdopt==1){
-            adopt="成功";
-        }else if(isAdopt==0){
-            adopt="失败";
-        }else{
-            adopt="暂定";
-        }
+                              @RequestParam("StudentName") String StudentName,
+                              @RequestParam("departmentId") Integer departmentId,
+                              @RequestParam("companyName") String companyName
+                             ) {
+
+        Integer num = companyMapper.save(companyName);
         String filename= FileUtil.getOriginalFilename(path);
         String subFilename=filename.substring(filename.indexOf("."),filename.length());
-        String filenames =dname+sname+cname+recordingTime+adopt+subFilename;
+        String filenames =StudentName+StudentName+companyName+subFilename;
 
         try
         {
@@ -126,6 +117,15 @@ public class FileController
             e.printStackTrace();
         }
     }
+
+    @PostMapping("/save")
+    public boolean save(@RequestBody Record record ,@RequestParam String companyName){
+        Integer save = companyMapper.save(companyName);
+        return false;
+    }
+
+
+
 
 }
 

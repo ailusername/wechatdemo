@@ -19,10 +19,6 @@ public class FileUtil
 
     /**
      * 根据path获取文件名
-     *
-     * @author kokJuis
-     * @version 1.0
-     * @date 2016-12-12
      * @param filename
      * @return
      */
